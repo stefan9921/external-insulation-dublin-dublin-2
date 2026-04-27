@@ -5,11 +5,29 @@ import Footer from "../../components/Footer";
 import { BreadcrumbJsonLd, FaqJsonLd } from "../../components/JsonLd";
 import { SITE } from "../../lib/site";
 
+const PAGE_URL = SITE.url + "/faq";
+const PAGE_TITLE = "External Wall Insulation FAQ Dublin & Ireland | Costs, Grants";
+const PAGE_DESCRIPTION =
+  "Answers to common questions about external wall insulation in Dublin and Ireland — cost, SEAI grants, planning permission, and is it worth it.";
+
 export const metadata: Metadata = {
-  title: "External Wall Insulation FAQ Dublin & Ireland | Costs, Grants",
-  description:
-    "Answers to common questions about external wall insulation in Dublin and Ireland — cost, SEAI grants, planning permission, and is it worth it.",
+  title: PAGE_TITLE,
+  description: PAGE_DESCRIPTION,
   alternates: { canonical: "/faq" },
+  openGraph: {
+    type: "website",
+    url: PAGE_URL,
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
+    images: [
+      {
+        url: SITE.ogImage.path,
+        width: SITE.ogImage.width,
+        height: SITE.ogImage.height,
+        alt: SITE.ogImage.alt,
+      },
+    ],
+  },
 };
 
 type FaqGroup = { heading: string; items: { q: string; a: string }[] };

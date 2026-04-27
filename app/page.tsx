@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { LocalBusinessJsonLd, BreadcrumbJsonLd } from "../components/JsonLd";
+import {
+  LocalBusinessJsonLd,
+  BreadcrumbJsonLd,
+  WebsiteJsonLd,
+} from "../components/JsonLd";
 import { SITE } from "../lib/site";
 
 export const metadata: Metadata = {
@@ -10,6 +15,21 @@ export const metadata: Metadata = {
   description:
     "External Insulation Dublin installs SEAI-approved external wall insulation across Dublin. Cut bills, qualify for grants. Free quotes — call +35312308892.",
   alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    url: SITE.url + "/",
+    title: "External Insulation Dublin | SEAI Approved EWI Contractors",
+    description:
+      "SEAI-approved external wall insulation across Dublin. Grants up to €8,000. Free quotes from a local Dublin 2 contractor.",
+    images: [
+      {
+        url: SITE.ogImage.path,
+        width: SITE.ogImage.width,
+        height: SITE.ogImage.height,
+        alt: SITE.ogImage.alt,
+      },
+    ],
+  },
 };
 
 export default function HomePage() {
@@ -17,6 +37,7 @@ export default function HomePage() {
     <>
       <Header active="home" />
       <LocalBusinessJsonLd />
+      <WebsiteJsonLd />
       <BreadcrumbJsonLd items={[{ name: "Home", url: SITE.url + "/" }]} />
 
       <main className="pt-20">
@@ -85,11 +106,13 @@ export default function HomePage() {
             </div>
             <div className="relative">
               <div className="absolute -inset-4 bg-primary-fixed/10 rounded-xl blur-2xl" />
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <Image
                 className="rounded-xl shadow-2xl relative z-10 w-full h-[420px] md:h-[600px] object-cover"
-                alt="Modern Dublin home with smooth cream external insulation render"
-                src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=1200&q=80"
+                alt="Modern Dublin home with smooth cream external insulation render — SEAI external wall insulation Dublin"
+                src="/images/hero-dublin.jpg"
+                width={1600}
+                height={900}
+                priority
               />
             </div>
           </div>
@@ -237,11 +260,12 @@ export default function HomePage() {
                     map
                   </span>
                 </div>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <Image
                   className="w-full h-full object-cover opacity-80"
-                  alt="Map view of Dublin coverage area"
-                  src="https://images.unsplash.com/photo-1518563259479-d003c05a6507?auto=format&fit=crop&w=1200&q=80"
+                  alt="Map showing the Dublin coverage area for external wall insulation projects"
+                  src="/images/map-dublin.jpg"
+                  width={1600}
+                  height={900}
                 />
                 <div className="absolute bottom-6 left-6 bg-white p-4 rounded-lg shadow-lg flex items-center gap-4">
                   <div className="w-3 h-3 bg-secondary rounded-full animate-pulse" />
@@ -268,28 +292,29 @@ export default function HomePage() {
             <div className="grid md:grid-cols-3 gap-8">
               {[
                 {
-                  alt: "Stillorgan semi-detached before/after",
+                  alt: "Semi-detached Stillorgan home after external wall insulation render",
                   title: "Semi-Detached, Stillorgan",
-                  src: "https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?auto=format&fit=crop&w=800&q=80",
+                  src: "/images/gallery-stillorgan.jpg",
                 },
                 {
-                  alt: "Ranelagh terraced before/after",
+                  alt: "Terraced Ranelagh house with external wall insulation finish",
                   title: "Terraced Home, Ranelagh",
-                  src: "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?auto=format&fit=crop&w=800&q=80",
+                  src: "/images/gallery-ranelagh.jpg",
                 },
                 {
-                  alt: "Malahide bungalow before/after",
+                  alt: "Malahide bungalow upgraded with external wall insulation",
                   title: "Bungalow, Malahide",
-                  src: "https://images.unsplash.com/photo-1592595896616-c37162298647?auto=format&fit=crop&w=800&q=80",
+                  src: "/images/gallery-malahide.jpg",
                 },
               ].map((item) => (
                 <div key={item.title} className="space-y-4">
                   <div className="relative group rounded-xl overflow-hidden shadow-lg h-80">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
+                    <Image
                       className="w-full h-full object-cover"
                       alt={item.alt}
                       src={item.src}
+                      width={1200}
+                      height={800}
                     />
                     <div className="absolute top-4 left-4 bg-primary-fixed text-on-primary-fixed px-3 py-1 rounded-full text-xs font-bold uppercase">
                       Before & After

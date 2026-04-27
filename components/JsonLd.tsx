@@ -4,10 +4,13 @@ export function LocalBusinessJsonLd() {
   const data = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
+    "@id": SITE.url + "/#localbusiness",
     name: SITE.name,
     url: SITE.url,
+    image: SITE.url + SITE.ogImage.path,
     telephone: SITE.phone,
     email: SITE.email,
+    priceRange: "€€",
     address: {
       "@type": "PostalAddress",
       streetAddress: SITE.address.street,
@@ -16,8 +19,86 @@ export function LocalBusinessJsonLd() {
       postalCode: SITE.address.postalCode,
       addressCountry: SITE.address.country,
     },
-    openingHours: "Mo-Su 08:00-20:00",
-    areaServed: ["Dublin", "Blackrock", "Dalkey"],
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday",
+        ],
+        opens: "08:00",
+        closes: "20:00",
+      },
+    ],
+    areaServed: [
+      { "@type": "City", name: "Dublin" },
+      { "@type": "Place", name: "Blackrock" },
+      { "@type": "Place", name: "Dalkey" },
+    ],
+  };
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+    />
+  );
+}
+
+export function WebsiteJsonLd() {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": SITE.url + "/#website",
+    url: SITE.url,
+    name: SITE.name,
+    publisher: { "@id": SITE.url + "/#localbusiness" },
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: SITE.url + "/?q={search_term_string}",
+      },
+      "query-input": "required name=search_term_string",
+    },
+  };
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+    />
+  );
+}
+
+type ServiceJsonLdProps = {
+  name: string;
+  description: string;
+  url: string;
+  serviceType?: string;
+};
+
+export function ServiceJsonLd({
+  name,
+  description,
+  url,
+  serviceType,
+}: ServiceJsonLdProps) {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name,
+    description,
+    serviceType: serviceType || name,
+    url,
+    provider: { "@id": SITE.url + "/#localbusiness" },
+    areaServed: [
+      { "@type": "City", name: "Dublin" },
+      { "@type": "Country", name: "Ireland" },
+    ],
   };
   return (
     <script

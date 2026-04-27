@@ -1,11 +1,30 @@
 import type { Metadata } from "next";
 import AreaPage from "../../../components/AreaPage";
+import { SITE } from "../../../lib/site";
+
+const PAGE_URL = SITE.url + "/areas/blackrock";
+const PAGE_TITLE = "External Wall Insulation Blackrock, Dublin | EWI Contractors";
+const PAGE_DESCRIPTION =
+  "External wall insulation in Blackrock, South Dublin. SEAI-approved EWI contractors covering Blackrock and surrounding areas. Free local quote.";
 
 export const metadata: Metadata = {
-  title: "External Wall Insulation Blackrock, Dublin | EWI Contractors",
-  description:
-    "External wall insulation in Blackrock, South Dublin. SEAI-approved EWI contractors covering Blackrock and surrounding areas. Free local quote.",
+  title: PAGE_TITLE,
+  description: PAGE_DESCRIPTION,
   alternates: { canonical: "/areas/blackrock" },
+  openGraph: {
+    type: "website",
+    url: PAGE_URL,
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
+    images: [
+      {
+        url: SITE.ogImage.path,
+        width: SITE.ogImage.width,
+        height: SITE.ogImage.height,
+        alt: SITE.ogImage.alt,
+      },
+    ],
+  },
 };
 
 export default function BlackrockPage() {
@@ -31,7 +50,7 @@ export default function BlackrockPage() {
         grant: "€6,000",
         reduction: "42%",
       }}
-      imageSrc="https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=1200&q=80"
+      imageSrc="/images/area-blackrock.jpg"
     />
   );
 }

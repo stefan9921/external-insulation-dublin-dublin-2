@@ -5,11 +5,29 @@ import Footer from "../../components/Footer";
 import { BreadcrumbJsonLd, LocalBusinessJsonLd } from "../../components/JsonLd";
 import { SITE } from "../../lib/site";
 
+const PAGE_URL = SITE.url + "/contact";
+const PAGE_TITLE = "Contact External Insulation Dublin | Free Quote +35312308892";
+const PAGE_DESCRIPTION =
+  "Contact External Insulation Dublin for a free external wall insulation quote. Phone +35312308892 or email info@externalinsulationdublin.ie.";
+
 export const metadata: Metadata = {
-  title: "Contact External Insulation Dublin | Free Quote +35312308892",
-  description:
-    "Contact External Insulation Dublin for a free external wall insulation quote. Phone +35312308892 or email info@externalinsulationdublin.ie.",
+  title: PAGE_TITLE,
+  description: PAGE_DESCRIPTION,
   alternates: { canonical: "/contact" },
+  openGraph: {
+    type: "website",
+    url: PAGE_URL,
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
+    images: [
+      {
+        url: SITE.ogImage.path,
+        width: SITE.ogImage.width,
+        height: SITE.ogImage.height,
+        alt: SITE.ogImage.alt,
+      },
+    ],
+  },
 };
 
 export default function ContactPage() {

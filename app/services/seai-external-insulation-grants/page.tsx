@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
@@ -6,15 +7,34 @@ import {
   BreadcrumbJsonLd,
   FaqJsonLd,
   LocalBusinessJsonLd,
+  ServiceJsonLd,
 } from "../../../components/JsonLd";
 import { SITE } from "../../../lib/site";
 
+const PAGE_URL = SITE.url + "/services/seai-external-insulation-grants";
+const PAGE_TITLE = "SEAI External Insulation Grants Ireland | Cost & Eligibility";
+const PAGE_DESCRIPTION =
+  "Apply for SEAI external wall insulation grants in Ireland. Up to EUR 8,000 off external insulation. Check eligibility and get a free quote in Dublin.";
+
 export const metadata: Metadata = {
-  title: "SEAI External Insulation Grants Ireland | Cost & Eligibility",
-  description:
-    "Apply for SEAI external wall insulation grants in Ireland. Up to EUR 8,000 off external insulation. Check eligibility and get a free quote in Dublin.",
+  title: PAGE_TITLE,
+  description: PAGE_DESCRIPTION,
   alternates: {
     canonical: "/services/seai-external-insulation-grants",
+  },
+  openGraph: {
+    type: "website",
+    url: PAGE_URL,
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
+    images: [
+      {
+        url: SITE.ogImage.path,
+        width: SITE.ogImage.width,
+        height: SITE.ogImage.height,
+        alt: SITE.ogImage.alt,
+      },
+    ],
   },
 };
 
@@ -50,6 +70,12 @@ export default function GrantsPage() {
     <>
       <Header active="grants" />
       <LocalBusinessJsonLd />
+      <ServiceJsonLd
+        name="SEAI External Wall Insulation Grants"
+        description="SEAI registered external wall insulation grant application and installation service in Dublin and across Ireland. Grants up to €8,000 for eligible homes."
+        url={PAGE_URL}
+        serviceType="External Wall Insulation"
+      />
       <BreadcrumbJsonLd
         items={[
           { name: "Home", url: SITE.url + "/" },
@@ -130,11 +156,13 @@ export default function GrantsPage() {
             </div>
             <div className="relative">
               <div className="rounded-xl overflow-hidden shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-500">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  alt="Contractor applying external insulation boards"
+                <Image
+                  alt="Contractor fitting EPS insulation boards as part of an SEAI external wall insulation grant install"
                   className="w-full h-[420px] md:h-[600px] object-cover"
-                  src="https://images.unsplash.com/photo-1581094488379-6a99b9bf1bde?auto=format&fit=crop&w=1200&q=80"
+                  src="/images/grants-hero.jpg"
+                  width={1600}
+                  height={900}
+                  priority
                 />
               </div>
               <div className="absolute -bottom-4 -left-4 md:-bottom-6 md:-left-6 bg-tertiary-container text-on-tertiary p-4 md:p-6 rounded-xl shadow-xl max-w-xs">

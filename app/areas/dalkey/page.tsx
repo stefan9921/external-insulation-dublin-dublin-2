@@ -1,11 +1,30 @@
 import type { Metadata } from "next";
 import AreaPage from "../../../components/AreaPage";
+import { SITE } from "../../../lib/site";
+
+const PAGE_URL = SITE.url + "/areas/dalkey";
+const PAGE_TITLE = "External Wall Insulation Dalkey, Dublin | EWI Contractors";
+const PAGE_DESCRIPTION =
+  "External wall insulation in Dalkey, South Dublin. SEAI-approved EWI installers serving Dalkey homeowners. Free local survey and quote.";
 
 export const metadata: Metadata = {
-  title: "External Wall Insulation Dalkey, Dublin | EWI Contractors",
-  description:
-    "External wall insulation in Dalkey, South Dublin. SEAI-approved EWI installers serving Dalkey homeowners. Free local survey and quote.",
+  title: PAGE_TITLE,
+  description: PAGE_DESCRIPTION,
   alternates: { canonical: "/areas/dalkey" },
+  openGraph: {
+    type: "website",
+    url: PAGE_URL,
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
+    images: [
+      {
+        url: SITE.ogImage.path,
+        width: SITE.ogImage.width,
+        height: SITE.ogImage.height,
+        alt: SITE.ogImage.alt,
+      },
+    ],
+  },
 };
 
 export default function DalkeyPage() {
@@ -31,7 +50,7 @@ export default function DalkeyPage() {
         grant: "€6,000",
         reduction: "38%",
       }}
-      imageSrc="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80"
+      imageSrc="/images/area-dalkey.jpg"
     />
   );
 }

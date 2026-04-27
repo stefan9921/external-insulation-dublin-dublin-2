@@ -1,9 +1,11 @@
+import Image from "next/image";
 import Link from "next/link";
 import Header from "./Header";
 import Footer from "./Footer";
 import {
   BreadcrumbJsonLd,
   LocalBusinessJsonLd,
+  ServiceJsonLd,
 } from "./JsonLd";
 import { SITE } from "../lib/site";
 
@@ -36,6 +38,12 @@ export default function AreaPage({
     <>
       <Header active="areas" />
       <LocalBusinessJsonLd />
+      <ServiceJsonLd
+        name={`External Wall Insulation in ${area}`}
+        description={`SEAI registered external wall insulation contractors serving ${area}, Dublin. Free local survey and grant application support.`}
+        url={SITE.url + "/areas/" + slug}
+        serviceType="External Wall Insulation"
+      />
       <BreadcrumbJsonLd
         items={[
           { name: "Home", url: SITE.url + "/" },
@@ -111,11 +119,13 @@ export default function AreaPage({
             </div>
             <div className="relative">
               <div className="absolute -inset-4 bg-tertiary-container/5 rounded-[2rem] -rotate-2" />
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                alt={`Classic ${area} residence after external wall insulation`}
+              <Image
+                alt={`Classic ${area} residence after external wall insulation install — SEAI grant approved EWI Dublin`}
                 className="relative rounded-xl shadow-2xl z-10 w-full h-[400px] md:h-[500px] object-cover"
                 src={imageSrc}
+                width={1600}
+                height={900}
+                priority
               />
             </div>
           </div>
@@ -221,22 +231,24 @@ export default function AreaPage({
             <div className="bg-surface-container-low rounded-[2rem] overflow-hidden grid grid-cols-1 lg:grid-cols-2 gap-0">
               <div className="grid grid-cols-1 md:grid-cols-2">
                 <div className="relative group h-64 md:h-[400px] lg:h-full">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    alt={`Before: home in ${area}`}
+                  <Image
+                    alt={`Before: ${area} home prior to external wall insulation install`}
                     className="w-full h-full object-cover"
-                    src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80"
+                    src="/images/area-before.jpg"
+                    width={1200}
+                    height={800}
                   />
                   <div className="absolute top-4 left-4 bg-black/50 backdrop-blur-md text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
                     Before
                   </div>
                 </div>
                 <div className="relative group h-64 md:h-[400px] lg:h-full">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    alt={`After: home in ${area}`}
+                  <Image
+                    alt={`After: ${area} home following SEAI external wall insulation upgrade`}
                     className="w-full h-full object-cover"
-                    src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=800&q=80"
+                    src="/images/area-after.jpg"
+                    width={1200}
+                    height={800}
                   />
                   <div className="absolute top-4 left-4 bg-tertiary-container text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
                     After

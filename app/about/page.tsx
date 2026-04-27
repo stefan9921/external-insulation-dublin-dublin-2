@@ -1,15 +1,34 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { BreadcrumbJsonLd, LocalBusinessJsonLd } from "../../components/JsonLd";
 import { SITE } from "../../lib/site";
 
+const PAGE_URL = SITE.url + "/about";
+const PAGE_TITLE = "About External Insulation Dublin | SEAI Approved Contractor";
+const PAGE_DESCRIPTION =
+  "Learn about External Insulation Dublin — SEAI registered external wall insulation contractors based in Dublin 2 serving homeowners across Dublin.";
+
 export const metadata: Metadata = {
-  title: "About External Insulation Dublin | SEAI Approved Contractor",
-  description:
-    "Learn about External Insulation Dublin — SEAI registered external wall insulation contractors based in Dublin 2 serving homeowners across Dublin.",
+  title: PAGE_TITLE,
+  description: PAGE_DESCRIPTION,
   alternates: { canonical: "/about" },
+  openGraph: {
+    type: "website",
+    url: PAGE_URL,
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
+    images: [
+      {
+        url: SITE.ogImage.path,
+        width: SITE.ogImage.width,
+        height: SITE.ogImage.height,
+        alt: SITE.ogImage.alt,
+      },
+    ],
+  },
 };
 
 export default function AboutPage() {
@@ -71,11 +90,13 @@ export default function AboutPage() {
           </div>
           <div className="relative">
             <div className="absolute -inset-4 bg-primary-fixed/10 rounded-xl blur-2xl" />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              alt="External Insulation Dublin team installing EWI on a Dublin home"
+            <Image
+              alt="External Insulation Dublin installation team fitting external wall insulation on a Dublin home"
               className="rounded-xl shadow-2xl relative z-10 w-full h-[400px] md:h-[500px] object-cover"
-              src="https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&w=1200&q=80"
+              src="/images/about-team.jpg"
+              width={1600}
+              height={900}
+              priority
             />
           </div>
         </section>
