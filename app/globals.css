@@ -1,0 +1,119 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand palette (DESIGN.md) */
+  --color-brand-primary: #FFFD8F;
+  --color-brand-secondary: #B0CE88;
+  --color-brand-accent: #4C763B;
+
+  /* Stitch Material-like tokens used across screens */
+  --color-on-background: #121c2a;
+  --color-primary-fixed-dim: #cdcb63;
+  --color-outline: #73796d;
+  --color-secondary-fixed: #ceeda4;
+  --color-surface-container: #e6eeff;
+  --color-inverse-surface: #27313f;
+  --color-on-tertiary-fixed-variant: #28501a;
+  --color-surface: #f8f9ff;
+  --color-secondary: #4d662c;
+  --color-error: #ba1a1a;
+  --color-on-tertiary-container: #cafbb2;
+  --color-on-surface-variant: #42493e;
+  --color-surface-container-highest: #d9e3f6;
+  --color-tertiary-fixed-dim: #a4d38e;
+  --color-tertiary: #345d25;
+  --color-on-error: #ffffff;
+  --color-outline-variant: #c2c9ba;
+  --color-tertiary-fixed: #c0f0a8;
+  --color-surface-bright: #f8f9ff;
+  --color-surface-tint: #626100;
+  --color-on-primary-fixed: #1d1d00;
+  --color-on-tertiary-fixed: #042100;
+  --color-on-secondary-container: #516a30;
+  --color-on-surface: #121c2a;
+  --color-inverse-primary: #cdcb63;
+  --color-secondary-container: #cbeaa1;
+  --color-surface-variant: #d9e3f6;
+  --color-tertiary-container: #4c763b;
+  --color-surface-container-high: #dee9fc;
+  --color-primary-container: #706f0c;
+  --color-on-error-container: #93000a;
+  --color-secondary-fixed-dim: #b2d08a;
+  --color-primary-fixed: #e9e87c;
+  --color-on-primary: #ffffff;
+  --color-surface-dim: #d0dbed;
+  --color-on-primary-container: #f5f386;
+  --color-background: #f8f9ff;
+  --color-surface-container-low: #eff4ff;
+  --color-on-tertiary: #ffffff;
+  --color-on-secondary-fixed: #102000;
+  --color-on-secondary: #ffffff;
+  --color-surface-container-lowest: #ffffff;
+  --color-inverse-on-surface: #eaf1ff;
+  --color-error-container: #ffdad6;
+  --color-on-secondary-fixed-variant: #364e16;
+  --color-primary: #575600;
+  --color-on-primary-fixed-variant: #4a4900;
+
+  /* Headline / body fonts (Plus Jakarta Sans + Inter, pulled in via layout.tsx) */
+  --font-headline: var(--font-jakarta), "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-display: var(--font-jakarta), "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-body: var(--font-inter), "Inter", system-ui, sans-serif;
+
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-xxl: 1.5rem;
+}
+
+:root {
+  --background: #f8f9ff;
+  --foreground: #121c2a;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-headline);
+}
+
+/* Material Symbols icon font */
+.material-symbols-outlined {
+  font-family: "Material Symbols Outlined";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.material-symbols-outlined.fill {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Background utilities used in Stitch screens */
+.bg-gradient-primary,
+.bg-primary-gradient {
+  background: linear-gradient(135deg, #FFFD8F 0%, #706f0c 100%);
+}
+
+.house-underline {
+  background-image: linear-gradient(120deg, #e9e87c 0%, #e9e87c 100%);
+  background-repeat: no-repeat;
+  background-size: 100% 0.3em;
+  background-position: 0 88%;
+}
+
+::selection {
+  background: var(--color-primary-fixed);
+  color: var(--color-on-primary-fixed);
+}
