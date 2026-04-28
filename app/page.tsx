@@ -8,6 +8,7 @@ import {
   BreadcrumbJsonLd,
   WebsiteJsonLd,
   ServiceJsonLd,
+  FaqJsonLd,
 } from "../components/JsonLd";
 import { SITE } from "../lib/site";
 
@@ -33,6 +34,25 @@ export const metadata: Metadata = {
   },
 };
 
+const HOME_FAQS: { q: string; a: string }[] = [
+  {
+    q: "How much does external insulation cost in Dublin?",
+    a: "External wall insulation in Dublin typically costs €100-€110 per m² installed, including system, mesh, render, scaffolding and labour. For a standard three-bed semi-detached Dublin home this works out at roughly €18,000 before grants, dropping to about €12,000 net of the typical €6,000 SEAI grant. Apartments and mid-terrace homes start nearer €8,500 pre-grant; large detached properties run up to €26,000. Coastal homes in Blackrock or Dalkey often need silicone render finishes, which can add 5-10% to the headline cost. We provide a fixed quote after a free site survey so you know the exact figure before any work begins.",
+  },
+  {
+    q: "What SEAI grants are available for external wall insulation?",
+    a: "SEAI runs the Better Energy Homes scheme, which pays external wall insulation grants of €3,500 for apartments and mid-terrace homes, €6,000 for semi-detached and end-terrace homes, and up to €8,000 for detached houses. To qualify, the home must have been built and first occupied before 2011, and the work must be carried out by an SEAI registered contractor. As an SEAI registered installer we handle the grant application, BER assessment booking and post-works paperwork on your behalf, so you only see the net figure once the grant has been deducted from the final invoice.",
+  },
+  {
+    q: "Do I need planning permission for external wall insulation in Dublin?",
+    a: "In most Dublin cases external wall insulation is treated as exempted development under Class 2 of the Planning and Development Regulations, so you do not need planning permission. The exceptions are protected structures, properties inside an Architectural Conservation Area (ACA), and any work that materially alters the character or appearance of the building. If your home is listed on the Dublin City Council or Dún Laoghaire-Rathdown record of protected structures, or sits within an ACA such as parts of Dalkey or Ranelagh, we recommend a quick pre-planning consultation with the local authority before signing off on a finish.",
+  },
+  {
+    q: "Is external wall insulation worth it?",
+    a: "For most pre-2011 Dublin homes external wall insulation is the single highest-impact retrofit you can make. Wall U-values typically fall from around 2.0 W/m²K to 0.27 W/m²K, cutting heating bills by 25-45% and lifting the BER from a D2 or E1 up to a B3 or better. That BER uplift directly raises resale value and rentability. Combined with the SEAI grant the simple payback period is usually 7-10 years, and the wall stays warm and dry afterwards, which dramatically reduces surface condensation and the mould growth that follows it. For solid-wall and early cavity homes there is no more effective wall upgrade.",
+  },
+];
+
 export default function HomePage() {
   return (
     <>
@@ -45,6 +65,7 @@ export default function HomePage() {
         url={SITE.url + "/"}
         serviceType="External Wall Insulation"
       />
+      <FaqJsonLd items={HOME_FAQS} />
       <BreadcrumbJsonLd items={[{ name: "Home", url: SITE.url + "/" }]} />
 
       <main className="pt-20">
@@ -511,24 +532,24 @@ export default function HomePage() {
             <h2 className="text-3xl font-extrabold font-headline text-tertiary-container mb-12 text-center">
               Frequently Asked Questions
             </h2>
-            <div className="space-y-4">
-              {[
-                "How much does external insulation cost?",
-                "What SEAI grants are available?",
-                "Do I need planning permission for insulation?",
-                "Is external wall insulation worth it?",
-              ].map((q) => (
-                <div key={q} className="border-b border-outline-variant/30 pb-4">
-                  <Link
-                    href="/faq"
-                    className="flex justify-between items-center w-full text-left group"
-                  >
-                    <span className="font-bold text-tertiary-container">{q}</span>
-                    <span className="material-symbols-outlined group-hover:rotate-45 transition-transform">
-                      add
+            <div className="space-y-3">
+              {HOME_FAQS.map((item) => (
+                <details
+                  key={item.q}
+                  className="bg-white rounded-xl shadow-sm overflow-hidden border border-outline-variant/10 group"
+                >
+                  <summary className="w-full px-6 md:px-8 py-5 text-left flex justify-between items-center cursor-pointer list-none">
+                    <h3 className="font-bold text-base md:text-lg text-tertiary-container pr-4">
+                      {item.q}
+                    </h3>
+                    <span className="material-symbols-outlined text-tertiary-container transition-transform group-open:rotate-180 shrink-0">
+                      expand_more
                     </span>
-                  </Link>
-                </div>
+                  </summary>
+                  <div className="px-6 md:px-8 pb-6 text-on-surface-variant leading-relaxed">
+                    {item.a}
+                  </div>
+                </details>
               ))}
             </div>
             <div className="text-center mt-12">
