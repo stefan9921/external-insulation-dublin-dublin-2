@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import { BreadcrumbJsonLd } from "../../components/JsonLd";
+import { BreadcrumbJsonLd, WebPageJsonLd } from "../../components/JsonLd";
 import { SITE } from "../../lib/site";
 
 export const metadata: Metadata = {
-  title: "Terms of Service | External Insulation Dublin",
+  title: { absolute: "Terms of Service | External Insulation Dublin" },
   description:
     "Terms of service governing the use of the External Insulation Dublin website and submission of quote requests.",
   alternates: { canonical: "/terms" },
@@ -16,6 +16,11 @@ export default function TermsPage() {
   return (
     <>
       <Header />
+      <WebPageJsonLd
+        name="Terms of Service"
+        description="Terms of service governing the use of the External Insulation Dublin website and submission of quote requests."
+        url={SITE.url + "/terms"}
+      />
       <BreadcrumbJsonLd
         items={[
           { name: "Home", url: SITE.url + "/" },

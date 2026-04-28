@@ -11,7 +11,7 @@ const PAGE_DESCRIPTION =
   "Answers to common questions about external wall insulation in Dublin and Ireland — cost, SEAI grants, planning permission, and is it worth it.";
 
 export const metadata: Metadata = {
-  title: PAGE_TITLE,
+  title: { absolute: PAGE_TITLE },
   description: PAGE_DESCRIPTION,
   alternates: { canonical: "/faq" },
   openGraph: {

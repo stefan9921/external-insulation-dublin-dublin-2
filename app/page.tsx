@@ -7,6 +7,7 @@ import {
   LocalBusinessJsonLd,
   BreadcrumbJsonLd,
   WebsiteJsonLd,
+  ServiceJsonLd,
 } from "../components/JsonLd";
 import { SITE } from "../lib/site";
 
@@ -38,6 +39,12 @@ export default function HomePage() {
       <Header active="home" />
       <LocalBusinessJsonLd />
       <WebsiteJsonLd />
+      <ServiceJsonLd
+        name="External Wall Insulation Dublin"
+        description="SEAI registered external wall insulation contractors in Dublin. Grants up to €8,000 for eligible homes, NSAI approved systems and 20+ years of EWI experience."
+        url={SITE.url + "/"}
+        serviceType="External Wall Insulation"
+      />
       <BreadcrumbJsonLd items={[{ name: "Home", url: SITE.url + "/" }]} />
 
       <main className="pt-20">
@@ -154,6 +161,72 @@ export default function HomePage() {
                   5-Star Rated Reviews
                 </span>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Intro / About copy */}
+        <section className="py-16 md:py-20 bg-surface">
+          <div className="container mx-auto px-6 md:px-8 max-w-5xl">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+              <div className="lg:col-span-7 space-y-5">
+                <h2 className="text-3xl md:text-4xl font-extrabold font-headline text-tertiary-container leading-tight">
+                  Dublin&apos;s SEAI Approved External Wall Insulation Contractors
+                </h2>
+                <p className="text-lg text-on-surface-variant leading-relaxed">
+                  External Insulation Dublin is a Dublin 2 based EWI specialist serving
+                  homeowners across the city and the wider Greater Dublin Area. We have
+                  installed external wall insulation on more than 1,200 Irish homes over
+                  20+ years, helping families cut heating bills by 25-45%, raise their BER
+                  rating and unlock SEAI grants of up to €8,000.
+                </p>
+                <p className="text-lg text-on-surface-variant leading-relaxed">
+                  Our crews fit NSAI-approved EWI systems engineered for Irish weather,
+                  finished in silicone and silicone-acrylic renders that resist coastal
+                  weathering. We focus on doing one thing extremely well — external wall
+                  insulation in Dublin, installed correctly first time, with all the SEAI
+                  paperwork handled on your behalf. You only see your home once at hand-over
+                  — warm, modern and ready for winter.
+                </p>
+                <p className="text-lg text-on-surface-variant leading-relaxed">
+                  From terraced homes in Ranelagh and Stillorgan to coastal semi-detached
+                  properties in Blackrock and period villas in Dalkey, we tailor every
+                  external insulation install to the building stock. If you want a free,
+                  no-obligation quote for home insulation in Dublin, call us on{" "}
+                  <a
+                    href={`tel:${SITE.phone}`}
+                    className="text-tertiary-container font-bold underline"
+                  >
+                    {SITE.phoneDisplay}
+                  </a>{" "}
+                  or use the contact form below.
+                </p>
+              </div>
+              <aside className="lg:col-span-5 bg-surface-container-low p-8 rounded-xl space-y-4 border-l-4 border-tertiary-container">
+                <h3 className="text-xl font-bold font-headline text-tertiary-container">
+                  Why Dublin homeowners choose us
+                </h3>
+                <ul className="space-y-3">
+                  {[
+                    "Up to €8,000 SEAI external wall insulation grant",
+                    "NSAI-approved EWI systems built for Irish weather",
+                    "20+ years installing across Dublin & Wicklow",
+                    "Free site survey & fixed quote within 48 hours",
+                    "Full BER assessment management",
+                    "25-year structural & weatherproofing guarantee",
+                  ].map((item) => (
+                    <li
+                      key={item}
+                      className="flex items-start gap-3 text-on-surface-variant"
+                    >
+                      <span className="material-symbols-outlined text-secondary mt-0.5 shrink-0">
+                        check_circle
+                      </span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </aside>
             </div>
           </div>
         </section>
@@ -363,6 +436,69 @@ export default function HomePage() {
                   </div>
                   <p className="italic text-on-surface-variant">&ldquo;{t.quote}&rdquo;</p>
                   <div className="font-bold text-tertiary-container">{t.author}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Why External Insulation Pays Off */}
+        <section className="py-20 md:py-24 bg-surface-container-low">
+          <div className="container mx-auto px-6 md:px-8 max-w-6xl">
+            <div className="text-center mb-12 md:mb-16">
+              <h2 className="text-3xl md:text-4xl font-extrabold font-headline text-tertiary-container mb-4">
+                Why External Wall Insulation Is Worth It in Dublin
+              </h2>
+              <p className="text-on-surface-variant max-w-3xl mx-auto">
+                External wall insulation is the most effective wall upgrade for Irish homes.
+                It cuts U-values, eliminates cold bridging and protects the structure — all
+                without losing a single inch of internal floor space.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[
+                {
+                  icon: "thermometer",
+                  title: "Lower U-value, lower bills",
+                  text: "Wall U-values typically drop from around 2.0 W/m²K to 0.27 W/m²K — a 7x improvement. Heating bills fall by 25-45% on most pre-2011 Dublin homes.",
+                },
+                {
+                  icon: "euro",
+                  title: "Up to €8,000 SEAI grant",
+                  text: "Detached homes qualify for the maximum €8,000 SEAI external wall insulation grant. Apartments and mid-terrace homes claim €3,500.",
+                },
+                {
+                  icon: "home_work",
+                  title: "Higher BER, higher value",
+                  text: "External insulation typically lifts a Dublin home from a D2/E1 BER to a B3 or better, boosting resale value and rentability.",
+                },
+                {
+                  icon: "shield",
+                  title: "Protects the structure",
+                  text: "EWI keeps the masonry warm and dry, preventing cold bridging, surface condensation and the mould growth that follows.",
+                },
+                {
+                  icon: "park",
+                  title: "Cuts carbon by ~2 tons/year",
+                  text: "External insulation is one of the highest-impact retrofit measures in Ireland's path to a Climate Action Plan-compliant housing stock.",
+                },
+                {
+                  icon: "auto_fix_high",
+                  title: "Modern finish, kerb appeal",
+                  text: "A clean silicone-acrylic render refreshes tired pebbledash, painted block or brick — without losing the character of period properties.",
+                },
+              ].map((b) => (
+                <div
+                  key={b.title}
+                  className="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-outline-variant/10 space-y-3"
+                >
+                  <span className="material-symbols-outlined text-3xl text-tertiary-container">
+                    {b.icon}
+                  </span>
+                  <h3 className="text-lg md:text-xl font-bold text-tertiary-container">
+                    {b.title}
+                  </h3>
+                  <p className="text-on-surface-variant text-sm leading-relaxed">{b.text}</p>
                 </div>
               ))}
             </div>

@@ -147,3 +147,75 @@ export function BreadcrumbJsonLd({ items }: { items: { name: string; url: string
     />
   );
 }
+
+type AboutPageJsonLdProps = {
+  name: string;
+  description: string;
+  url: string;
+};
+
+export function AboutPageJsonLd({ name, description, url }: AboutPageJsonLdProps) {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    name,
+    description,
+    url,
+    mainEntity: { "@id": SITE.url + "/#localbusiness" },
+    isPartOf: { "@id": SITE.url + "/#website" },
+  };
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+    />
+  );
+}
+
+type ContactPageJsonLdProps = {
+  name: string;
+  description: string;
+  url: string;
+};
+
+export function ContactPageJsonLd({ name, description, url }: ContactPageJsonLdProps) {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    name,
+    description,
+    url,
+    mainEntity: { "@id": SITE.url + "/#localbusiness" },
+    isPartOf: { "@id": SITE.url + "/#website" },
+  };
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+    />
+  );
+}
+
+type WebPageJsonLdProps = {
+  name: string;
+  description: string;
+  url: string;
+};
+
+export function WebPageJsonLd({ name, description, url }: WebPageJsonLdProps) {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name,
+    description,
+    url,
+    isPartOf: { "@id": SITE.url + "/#website" },
+    publisher: { "@id": SITE.url + "/#localbusiness" },
+  };
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+    />
+  );
+}

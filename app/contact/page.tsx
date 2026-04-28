@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import { BreadcrumbJsonLd, LocalBusinessJsonLd } from "../../components/JsonLd";
+import {
+  BreadcrumbJsonLd,
+  ContactPageJsonLd,
+  LocalBusinessJsonLd,
+} from "../../components/JsonLd";
 import { SITE } from "../../lib/site";
 
 const PAGE_URL = SITE.url + "/contact";
@@ -11,7 +15,7 @@ const PAGE_DESCRIPTION =
   "Contact External Insulation Dublin for a free external wall insulation quote. Phone +35312308892 or email info@externalinsulationdublin.ie.";
 
 export const metadata: Metadata = {
-  title: PAGE_TITLE,
+  title: { absolute: PAGE_TITLE },
   description: PAGE_DESCRIPTION,
   alternates: { canonical: "/contact" },
   openGraph: {
@@ -35,6 +39,11 @@ export default function ContactPage() {
     <>
       <Header active="contact" />
       <LocalBusinessJsonLd />
+      <ContactPageJsonLd
+        name={PAGE_TITLE}
+        description={PAGE_DESCRIPTION}
+        url={PAGE_URL}
+      />
       <BreadcrumbJsonLd
         items={[
           { name: "Home", url: SITE.url + "/" },

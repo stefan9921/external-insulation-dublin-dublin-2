@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import { BreadcrumbJsonLd } from "../../components/JsonLd";
+import { BreadcrumbJsonLd, WebPageJsonLd } from "../../components/JsonLd";
 import { SITE } from "../../lib/site";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | External Insulation Dublin",
+  title: { absolute: "Privacy Policy | External Insulation Dublin" },
   description:
     "Privacy policy for External Insulation Dublin — how we collect, use and protect your personal data under GDPR.",
   alternates: { canonical: "/privacy-policy" },
@@ -16,6 +16,11 @@ export default function PrivacyPage() {
   return (
     <>
       <Header />
+      <WebPageJsonLd
+        name="Privacy Policy"
+        description="Privacy policy for External Insulation Dublin — how we collect, use and protect your personal data under GDPR."
+        url={SITE.url + "/privacy-policy"}
+      />
       <BreadcrumbJsonLd
         items={[
           { name: "Home", url: SITE.url + "/" },

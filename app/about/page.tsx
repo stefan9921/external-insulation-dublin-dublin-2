@@ -3,7 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import { BreadcrumbJsonLd, LocalBusinessJsonLd } from "../../components/JsonLd";
+import {
+  AboutPageJsonLd,
+  BreadcrumbJsonLd,
+  LocalBusinessJsonLd,
+} from "../../components/JsonLd";
 import { SITE } from "../../lib/site";
 
 const PAGE_URL = SITE.url + "/about";
@@ -12,7 +16,7 @@ const PAGE_DESCRIPTION =
   "Learn about External Insulation Dublin — SEAI registered external wall insulation contractors based in Dublin 2 serving homeowners across Dublin.";
 
 export const metadata: Metadata = {
-  title: PAGE_TITLE,
+  title: { absolute: PAGE_TITLE },
   description: PAGE_DESCRIPTION,
   alternates: { canonical: "/about" },
   openGraph: {
@@ -36,6 +40,11 @@ export default function AboutPage() {
     <>
       <Header active="about" />
       <LocalBusinessJsonLd />
+      <AboutPageJsonLd
+        name={PAGE_TITLE}
+        description={PAGE_DESCRIPTION}
+        url={PAGE_URL}
+      />
       <BreadcrumbJsonLd
         items={[
           { name: "Home", url: SITE.url + "/" },
@@ -99,6 +108,56 @@ export default function AboutPage() {
               priority
             />
           </div>
+        </section>
+
+        <section className="py-16 px-6 max-w-5xl mx-auto space-y-6">
+          <h2 className="text-3xl md:text-4xl font-display font-extrabold text-tertiary-container">
+            Our Story
+          </h2>
+          <p className="text-lg text-on-surface-variant leading-relaxed">
+            External Insulation Dublin was set up to fix one specific problem — Irish homes
+            that were too cold, too damp and too expensive to heat. Most of the housing stock
+            across Dublin was built before 2011, when wall insulation standards were still
+            catching up to modern climate targets. By specialising exclusively in external
+            wall insulation we have built the deep installation expertise and SEAI grant
+            knowledge that homeowners need to get the upgrade done correctly the first time.
+          </p>
+          <p className="text-lg text-on-surface-variant leading-relaxed">
+            Over two decades we have wrapped more than 1,200 homes — from apartments in the
+            Docklands and terraces in Ranelagh to detached houses in Foxrock and coastal
+            semi-detached homes in Blackrock and Dalkey. Every system we install is NSAI
+            Agrément certified for Irish weather and finished with breathable, weather-tough
+            silicone or silicone-acrylic render.
+          </p>
+          <h3 className="text-2xl font-bold text-tertiary-container pt-6">Our Values</h3>
+          <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {[
+              {
+                t: "Specialist focus",
+                d: "We only install external wall insulation. No subcontracting, no diversification.",
+              },
+              {
+                t: "Honest pricing",
+                d: "Transparent per-m² rates and a fixed quote after the free site survey.",
+              },
+              {
+                t: "Grant ownership",
+                d: "We complete and submit the full SEAI application on your behalf.",
+              },
+              {
+                t: "Clean job sites",
+                d: "Daily clean-down, careful access protection and minimal garden disruption.",
+              },
+            ].map((v) => (
+              <li
+                key={v.t}
+                className="bg-surface-container-low p-5 rounded-xl border border-outline-variant/20"
+              >
+                <div className="font-bold text-tertiary-container mb-1">{v.t}</div>
+                <div className="text-on-surface-variant text-sm">{v.d}</div>
+              </li>
+            ))}
+          </ul>
         </section>
 
         <section className="bg-surface-container-low py-16 md:py-20 px-6">

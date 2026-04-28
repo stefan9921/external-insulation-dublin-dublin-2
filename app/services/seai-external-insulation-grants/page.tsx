@@ -17,7 +17,7 @@ const PAGE_DESCRIPTION =
   "Apply for SEAI external wall insulation grants in Ireland. Up to EUR 8,000 off external insulation. Check eligibility and get a free quote in Dublin.";
 
 export const metadata: Metadata = {
-  title: PAGE_TITLE,
+  title: { absolute: PAGE_TITLE },
   description: PAGE_DESCRIPTION,
   alternates: {
     canonical: "/services/seai-external-insulation-grants",

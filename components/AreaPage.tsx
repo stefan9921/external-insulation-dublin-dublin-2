@@ -14,6 +14,12 @@ type Props = {
   slug: string; // e.g., "blackrock"
   intro: string;
   context: string;
+  // Longer-form keyword-rich body paragraphs, appearing below the case study.
+  // Two paragraphs of ~80-120 words each work well for ranking signals.
+  bodyParagraphs: string[];
+  // Three local landmarks used in a "Local landmarks" callout to strengthen
+  // the local pack signal (NAP + landmarks). Each landmark is name + blurb.
+  landmarks: { name: string; blurb: string }[];
   surroundingAreas: string[];
   caseStudy: {
     title: string;
@@ -30,6 +36,8 @@ export default function AreaPage({
   slug,
   intro,
   context,
+  bodyParagraphs,
+  landmarks,
   surroundingAreas,
   caseStudy,
   imageSrc,
@@ -294,6 +302,60 @@ export default function AreaPage({
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Local body copy + landmarks */}
+        <section className="py-16 md:py-20 bg-surface">
+          <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12">
+            <div className="lg:col-span-7 space-y-6">
+              <h2 className="text-3xl md:text-4xl font-headline font-bold text-tertiary-container leading-tight">
+                External Wall Insulation in {area} — Local Detail
+              </h2>
+              {bodyParagraphs.map((p, i) => (
+                <p key={i} className="text-lg text-on-surface-variant leading-relaxed">
+                  {p}
+                </p>
+              ))}
+              <div className="pt-4 flex flex-wrap gap-3">
+                <Link
+                  href="/services/seai-external-insulation-grants"
+                  className="inline-flex items-center gap-2 text-tertiary-container font-bold hover:underline"
+                >
+                  See SEAI grant amounts{" "}
+                  <span className="material-symbols-outlined">arrow_forward</span>
+                </Link>
+                <Link
+                  href="/faq"
+                  className="inline-flex items-center gap-2 text-tertiary-container font-bold hover:underline"
+                >
+                  Read FAQs on cost &amp; planning{" "}
+                  <span className="material-symbols-outlined">arrow_forward</span>
+                </Link>
+              </div>
+            </div>
+            <div className="lg:col-span-5 bg-surface-container-low rounded-xl p-8 md:p-10 space-y-4">
+              <h3 className="text-xl md:text-2xl font-headline font-bold text-tertiary-container">
+                Landmarks Near Our {area} Customers
+              </h3>
+              <p className="text-on-surface-variant">
+                Our installation crews know {area} inside out — here are a few of the local
+                landmarks our recent customers live close to.
+              </p>
+              <ul className="space-y-3 pt-2">
+                {landmarks.map((lm) => (
+                  <li key={lm.name} className="flex items-start gap-3">
+                    <span className="material-symbols-outlined text-tertiary-container shrink-0">
+                      place
+                    </span>
+                    <div>
+                      <div className="font-bold text-tertiary-container">{lm.name}</div>
+                      <div className="text-sm text-on-surface-variant">{lm.blurb}</div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </section>

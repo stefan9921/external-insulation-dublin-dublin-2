@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 import { SITE } from "../lib/site";
 
 export const metadata: Metadata = {
-  title: "Page Not Found | External Insulation Dublin",
+  title: { absolute: "Page Not Found | External Insulation Dublin" },
   description:
     "The page you were looking for could not be found. Browse SEAI grants, service areas, or contact External Insulation Dublin for help.",
   robots: {
