@@ -1,11 +1,29 @@
-// Read SITE_URL from env. Default is the production URL we expect once a
-// custom domain is wired up; falls back to the Vercel preview only when no
-// env override is set. NEVER hardcode a Vercel preview as canonical.
-const FALLBACK_URL = "https://external-insulation-dublin-dublin-2.vercel.app";
+// Canonical production URL for SEO metadata, robots.txt, and sitemap.xml.
+// Vercel preview URLs must never become canonical or sitemap URLs.
+const PRODUCTION_URL = "https://www.externalinsulationdublin.ie";
+const NON_WWW_PRODUCTION_HOST = "externalinsulationdublin.ie";
+const VERCEL_PREVIEW_HOST_SUFFIX = ".vercel.app";
 
-const RAW_URL = process.env.NEXT_PUBLIC_SITE_URL || FALLBACK_URL;
-// Strip any trailing slash so we can do `${SITE.url}${path}` safely.
-const SITE_URL = RAW_URL.replace(/\/+$/, "");
+function normaliseSiteUrl(rawUrl?: string): string {
+  const candidateUrl = rawUrl?.trim() || PRODUCTION_URL;
+
+  try {
+    const parsedUrl = new URL(candidateUrl);
+
+    if (
+      parsedUrl.hostname === NON_WWW_PRODUCTION_HOST ||
+      parsedUrl.hostname.endsWith(VERCEL_PREVIEW_HOST_SUFFIX)
+    ) {
+      return PRODUCTION_URL;
+    }
+
+    return parsedUrl.origin.replace(/\/+$/, "");
+  } catch {
+    return PRODUCTION_URL;
+  }
+}
+
+const SITE_URL = normaliseSiteUrl(process.env.NEXT_PUBLIC_SITE_URL);
 
 export const SITE = {
   name: "External Insulation Dublin",
